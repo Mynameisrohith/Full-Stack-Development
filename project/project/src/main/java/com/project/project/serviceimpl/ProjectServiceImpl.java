@@ -3,6 +3,8 @@ package com.project.project.serviceimpl;
 import java.util.List;
 
 import com.project.project.Entity.Project;
+import com.project.project.dto.Projectdto;
+import com.project.project.mapping.ProjectMapping;
 import com.project.project.repository.ProjectRepo;
 import com.project.project.service.ProjectService;
 import org.springframework.stereotype.Service;
@@ -51,5 +53,25 @@ public class ProjectServiceImpl implements ProjectService {
     public void deleteProject(Integer projectId) {
         Project project = getProjectById(projectId);
         projectRepository.delete(project);
+    }
+
+    @Override
+    public List<Projectdto> getProjectsByClientName(String ClientName) {
+        return projectRepository.findByClientName(ClientName).stream().map(p-> ProjectMapping.projecttodto(p)).toList();
+    }
+
+    @Override
+    public List<Projectdto> getProjectsByProjectName(String ProjectName) {
+        return projectRepository.findByProjectName(ProjectName).stream().map(p->ProjectMapping.projecttodto(p)).toList();
+    }
+
+    @Override
+    public List<Projectdto> getProjectByClientNameAndDescription(String clientname, String description) {
+        return projectRepository.findByClientNameAndDescription(clientname,description).stream().map(p->ProjectMapping.projecttodto(p)).toList();
+    }
+
+    @Override
+    public boolean getifprojectexists(String projectname) {
+        return projectRepository.existsByProjectName(projectname);
     }
 }

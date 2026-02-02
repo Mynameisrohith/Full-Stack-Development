@@ -2,9 +2,10 @@ package com.project.project.service;
 
 import java.util.List;
 import com.project.project.Entity.Project;
+import com.project.project.dto.Projectdto;
 import org.springframework.stereotype.Service;
 
-@Service
+
 public interface ProjectService {
 
     Project createProject(Project project);
@@ -16,4 +17,9 @@ public interface ProjectService {
     List<Project> getAllProjects();
 
     void deleteProject(Integer projectId);
+
+    List<Projectdto> getProjectsByClientName(String clientName);
+    List<Projectdto> getProjectsByProjectName(String ProjectName);
+    List<Projectdto> getProjectByClientNameAndDescription(String clientName,String description);
+    boolean getifprojectexists(String projectname);
 }
