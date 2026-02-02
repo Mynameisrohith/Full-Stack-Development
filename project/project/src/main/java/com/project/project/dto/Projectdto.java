@@ -1,32 +1,16 @@
-package com.project.project.Entity;
-
-
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDate;
+package com.project.project.dto;
 import java.time.LocalDateTime;
-import java.util.Date;
+public class Projectdto {
 
-@Entity
-@Table(name="project")
-public class Project {
-
-    public Project(){
+    public Projectdto(){
 
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer projectid;
-    private String projectName;
+    private String ProjectName;
     private String description;
     private String status;
     private String clientName;
-    @CreationTimestamp
-    @Column(updatable = false)
     private LocalDateTime startdate;
-    @UpdateTimestamp
     private LocalDateTime enddate;
     public Integer getProjectid() {
         return projectid;
@@ -37,11 +21,11 @@ public class Project {
     }
 
     public String getProjectName() {
-        return projectName;
+        return ProjectName;
     }
 
     public void setProjectName(String projectName) {
-        this.projectName = projectName;
+        ProjectName = projectName;
     }
 
     public String getDescription() {
@@ -84,16 +68,15 @@ public class Project {
         this.enddate = enddate;
     }
 
-
-
-    public Project(Integer projectid, String projectName, String description, String status, String clientName, LocalDateTime startdate, LocalDateTime enddate) {
+    public Projectdto(Integer projectid, String projectName, String description, String status, String clientName, LocalDateTime startdate, LocalDateTime enddate) {
         this.projectid = projectid;
-        this.projectName = projectName;
+        ProjectName = projectName;
         this.description = description;
         this.status = status;
         this.clientName = clientName;
         this.startdate = startdate;
         this.enddate = enddate;
     }
+
 
 }

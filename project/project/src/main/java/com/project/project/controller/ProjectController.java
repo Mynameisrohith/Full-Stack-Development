@@ -1,6 +1,7 @@
 package com.project.project.controller;
 
 import com.project.project.Entity.Project;
+import com.project.project.dto.Projectdto;
 import com.project.project.service.ProjectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,5 +67,25 @@ public class ProjectController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body("Project deleted successfully");
+    }
+
+
+    @GetMapping("/getprojectsbyclientname/{name}")
+    public ResponseEntity<List<Projectdto>> getProjectsByClientName(@PathVariable("name") String clientname){
+        return new ResponseEntity<>(projectService.getProjectsByClientName(clientname),HttpStatus.OK);
+    }
+
+    @GetMapping("/getprojectsbyprojectname/{projectname}")
+    public ResponseEntity<List<Projectdto>> getProjectsByProjectName(@PathVariable("projectname") String pname){
+        return new ResponseEntity<>(projectService.getProjectsByProjectName(pname),HttpStatus.OK);
+    }
+
+    @GetMapping("/getprojectsbyclientnameanddesc/{clientname}/{description}")
+    public ResponseEntity<List<Projectdto>> getProjectsByProjectName(@PathVariable("clientname") String clientname,@PathVariable String description){
+        return new ResponseEntity<>(projectService.getProjectByClientNameAndDescription(clientname,description),HttpStatus.OK);
+    }
+    @GetMapping("/checkifprojectexists/{projectname}")
+    public ResponseEntity<Boolean> getProjectsByProject(@PathVariable("projectname") String name){
+        return new ResponseEntity<>(projectService.getifprojectexists(name),HttpStatus.OK);
     }
 }
